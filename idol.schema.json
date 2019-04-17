@@ -6,6 +6,8 @@
       "givenNameRoman",
       "familyNameHangul",
       "familyNameRoman",
+      "stageNameHangul",
+      "stageNameRoman",
       "birthday",
       "status"
     ],
@@ -26,6 +28,14 @@
         },
         "familyNameRoman": {
             "description": "Family (last) name Romanzied",
+            "type": "string"
+        },
+        "stageNameHangul": {
+            "description": "Stage (last) name in Hangul",
+            "type": "string"
+        },
+        "stageNameRoman": {
+            "description": "Stage (last) name Romanzied",
             "type": "string"
         },
         "birthday": {
