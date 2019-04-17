@@ -1,0 +1,7 @@
+version: '3'
+services:
+  kpopdb:
+    build: .
+    command: python validate.py
+    volumes:
+      - .:/src
