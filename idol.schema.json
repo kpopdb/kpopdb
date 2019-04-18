@@ -1,5 +1,5 @@
 {
-    "$id": "https://example.com/person.schema.json",
+    "$id": "https://github.com/kpopdb/kpopdb/blob/master/idol.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "required": [
       "givenNameHangul",
