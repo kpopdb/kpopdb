@@ -51,9 +51,17 @@
             "description": "Group name Romanized",
           "type": "string"
         },
+        "formerGroups": {
+            "description": "An Idol's former groups",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+        },
         "status": {
             "description": "Idol's activity status",
-            "enum": ["active", "inactive"]
+            "enum": ["active", "former", "solo"]
         }
     }
 }
