@@ -11,6 +11,7 @@
       "stageNameHangul",
       "stageNameRoman",
       "birthday",
+      "nationality",
       "status",
       "sex"
     ],
@@ -57,6 +58,10 @@
         "sex": {
             "description": "Idol's sex",
             "enum": ["male", "female"]
+        },
+        "nationality": {
+            "description": "Nationality",
+            "enum": ["korean", "chinese", "thai", "korean-american"]
         },
         "groupHangul": {
             "description": "Group name in Hangul",
