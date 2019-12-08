@@ -8,6 +8,7 @@ import argparse
 import glob
 import json
 import os
+import jsonschema
 
 from jsonschema.validators import validator_for
 
@@ -22,7 +23,7 @@ if __name__ == '__main__':
         IDOL_SCHEMA = json.load(f)
     _validator_class = validator_for(IDOL_SCHEMA)
     _validator_class.check_schema(IDOL_SCHEMA)
-    idol = _validator_class(IDOL_SCHEMA)
+    idol = _validator_class(IDOL_SCHEMA, format_checker=jsonschema.FormatChecker())
 
     for file_path in glob.iglob('./**/*.group.json', recursive=True):
         print("Validating {}".format(file_path))
