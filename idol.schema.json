@@ -10,6 +10,8 @@
       "familyNameRoman",
       "stageNameHangul",
       "stageNameRoman",
+      "groupHangul",
+      "groupRoman",
       "birthday",
       "nationality",
       "status",
