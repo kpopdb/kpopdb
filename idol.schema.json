@@ -3,10 +3,10 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "required": [
       "givenName",
-      "givenNameHangul",
       "givenNameRoman",
+      "givenNameKorean",
+      "givenNameKoreanRoman",
       "familyName",
-      "familyNameHangul",
       "familyNameRoman",
       "stageNameHangul",
       "stageNameRoman",
@@ -21,27 +21,35 @@
     "type": "object",
     "properties": {
         "givenName": {
-            "description": "Given (first) name",
-            "type": "string"
-        },
-        "givenNameHangul": {
-            "description": "Given (first) name in Hangul",
+            "description": "Given (first) name in native language",
             "type": "string"
         },
         "givenNameRoman": {
-            "description": "Given (first) name Romanized",
+            "description": "Given (first) name romanized",
+            "type": "string"
+        },
+        "givenNameKorean": {
+            "description": "Korean given (first) name",
+            "type": "string"
+        },
+        "givenNameKoreanRoman": {
+            "description": "Korean given (first) name romanized",
             "type": "string"
         },
         "familyName": {
             "description": "Family (last) name",
             "type": "string"
         },
-        "familyNameHangul": {
-            "description": "Family (last) name in Hangul",
-            "type": "string"
-        },
         "familyNameRoman": {
             "description": "Family (last) name Romanzied",
+            "type": "string"
+        },
+        "familyNameKorean": {
+            "description": "Korean family (last) name in Hangul",
+            "type": "string"
+        },
+        "familyNameKoreanRoman": {
+            "description": "Korean family (last) name in Hangul",
             "type": "string"
         },
         "stageNameHangul": {
