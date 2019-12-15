@@ -10,8 +10,6 @@
       "familyNameRoman",
       "stageNameHangul",
       "stageNameRoman",
-      "groupHangul",
-      "groupRoman",
       "birthday",
       "nationality",
       "status",
@@ -81,17 +79,18 @@
             "description": "Group name Romanized",
           "type": "string"
         },
-        "formerGroups": {
-            "description": "An Idol's former groups",
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "string"
-            }
+        "solo": {
+            "description": "Is the idol a solo performer?",
+          "type": "boolean"
+        },
+        "soloDebutDate": {
+            "description": "Solo Debut Date",
+            "type": "string",
+            "format": "date"
         },
         "status": {
             "description": "Idol's activity status",
-            "enum": ["active", "former", "solo", "hiatus"]
+            "enum": ["active", "inactive", "former"]
         }
     }
 }

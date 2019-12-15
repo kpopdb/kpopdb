@@ -1,0 +1,47 @@
+{
+    "$id": "https://github.com/kpopdb/kpopdb/blob/master/alias.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "required": [
+      "alias",
+      "stageNameHangul",
+      "stageNameRoman",
+      "status"
+    ],
+    "title": "Idol Alias",
+    "type": "object",
+    "properties": {
+        "alias": {
+          "description": "Path to .idol.json file from the base directory",
+          "type": "string"
+        },
+        "stageNameHangul": {
+            "description": "Stage (last) name in Hangul",
+            "type": "string"
+        },
+        "stageNameRoman": {
+            "description": "Stage (last) name Romanzied",
+            "type": "string"
+        },
+        "groupHangul": {
+            "description": "Group name in Hangul",
+            "type": "string"
+        },
+        "groupRoman": {
+            "description": "Group name Romanized",
+          "type": "string"
+        },
+        "solo": {
+            "description": "Is the idol a solo performer?",
+          "type": "boolean"
+        },
+        "soloDebutDate": {
+            "description": "Solo Debut Date",
+            "type": "string",
+            "format": "date"
+        },
+        "status": {
+            "description": "Idol's activity status",
+            "enum": ["active", "inactive", "former"]
+        }
+    }
+}

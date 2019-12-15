@@ -6,6 +6,7 @@
 
 import argparse
 import glob
+import logging
 import json
 import os
 import jsonschema
@@ -28,6 +29,12 @@ class KpopValidator(object):
         _validator_class.check_schema(idol_schema)
         self.v_idol = _validator_class(idol_schema, format_checker=jsonschema.FormatChecker())
 
+        with open(os.path.join(self.base_path, "alias.schema.json")) as f:
+            idol_schema = json.load(f)
+        _validator_class = validator_for(idol_schema)
+        _validator_class.check_schema(idol_schema)
+        self.v_alias = _validator_class(idol_schema, format_checker=jsonschema.FormatChecker())
+
     def _validate_group(self, folder):
         """Validate a group's kpop data
 
@@ -38,7 +45,7 @@ class KpopValidator(object):
          - All .idol.json files underneath should match the group.
          - All idol data fits idol schema
         """
-        print("Validating {}".format(folder))
+        logging.info("Validating {}".format(folder))
         group_list = glob.glob(os.path.join(folder, '*.group.json'))
 
         # Only one .group.json file
@@ -53,8 +60,10 @@ class KpopValidator(object):
         group_hangul = group_data['nameHangul']
         group_roman = group_data['nameRoman']
 
+        # Validate idols
         idol_list = glob.iglob(os.path.join(folder, '*.idol.json'))
         for idol in idol_list:
+            logging.debug("Validating {}".format(idol))
             with open(idol, 'r') as f:
                 idol_data = json.load(f)
             # Validate against schema
@@ -66,6 +75,26 @@ class KpopValidator(object):
 
         return
 
+    def _validate_solo(self):
+        """Validate solo idols"""
+        for path in glob.iglob(os.path.join(self.base_path, 'solo/*.idol.json')):
+            logging.info("Validating {}".format(path))
+            with open(path, 'r') as f:
+                idol_data = json.load(f)
+            self.v_idol.validate(idol_data)
+            # Check for alias existence
+
+    def _validate_aliases(self):
+        """Validate aliases of idols"""
+        for path in glob.iglob(os.path.join(self.base_path, '**/*.alias.json'), recursive=True):
+            logging.info("Validating {}".format(path))
+            with open(path, 'r') as f:
+                alias_data = json.load(f)
+            self.v_alias.validate(alias_data)
+            # Check for alias existence
+            if not os.path.exists(os.path.join(self.base_path, alias_data['alias'])):
+                raise RuntimeError(f"Idol file not found for {path}: {alias_data['alias']}")
+
     def validate(self):
         """Validate all data in base_path
         """
@@ -73,6 +102,11 @@ class KpopValidator(object):
             folder = os.path.split(path)[0]
             self._validate_group(folder)
 
+        self._validate_solo()
+        self._validate_aliases()
+
+
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     v = KpopValidator(os.path.split(os.path.abspath(__file__))[0])
     v.validate()
