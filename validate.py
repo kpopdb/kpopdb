@@ -59,6 +59,7 @@ class KpopValidator(object):
         # Save off group data for idol data consistency
         group_hangul = group_data['nameHangul']
         group_roman = group_data['nameRoman']
+        group_status = group_data['status']
 
         # Validate idols
         idol_list = glob.iglob(os.path.join(folder, '*.idol.json'))
@@ -72,6 +73,29 @@ class KpopValidator(object):
             if ((idol_data['groupHangul'] != group_hangul) or
                 (idol_data['groupRoman'] != group_roman)):
                 raise RuntimeError(f"Idol group data for {idol_data['stageNameRoman']} does not match group name: {group_hangul} {group_roman}")
+            # Check idol status for disbanded groups
+            # Must be "disbanded" to show the final lineup
+            if group_status == "disbanded":
+                if not (idol_data['status'] == "disbanded" or
+                        idol_data['status'] == "former"):
+                    raise RuntimeError(f"Idol status does not match group disbanded status")
+
+        # Validate alias in group
+        alias_list = glob.iglob(os.path.join(folder, '*.alias.json'))
+        for alias in alias_list:
+            logging.debug("Validating {}".format(alias))
+            with open(alias, 'r') as f:
+                alias_data = json.load(f)
+            # Validate against schema
+            self.v_alias.validate(alias_data)
+            # Idol data should have consistent group data
+            if ((alias_data['groupHangul'] != group_hangul) or
+                (alias_data['groupRoman'] != group_roman)):
+                raise RuntimeError(f"Idol alias group data for {alias_data['stageNameRoman']} does not match group name: {group_hangul} {group_roman}")
+            if group_status == "disbanded":
+                if not (alias_data['status'] == "disbanded" or
+                        alias_data['status'] == "former"):
+                    raise RuntimeError(f"Idol alias status does not match group disbanded status")
 
         return
 

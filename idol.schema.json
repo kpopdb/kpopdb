@@ -4,8 +4,6 @@
     "required": [
       "givenName",
       "givenNameRoman",
-      "givenNameKorean",
-      "givenNameKoreanRoman",
       "familyName",
       "familyNameRoman",
       "stageNameHangul",
@@ -90,7 +88,7 @@
         },
         "status": {
             "description": "Idol's activity status",
-            "enum": ["active", "inactive", "former"]
+            "enum": ["active", "inactive", "former", "disbanded"]
         }
     }
 }

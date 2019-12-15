@@ -41,7 +41,7 @@
         },
         "status": {
             "description": "Idol's activity status",
-            "enum": ["active", "inactive", "former"]
+            "enum": ["active", "inactive", "former", "disbanded"]
         }
     }
 }
