@@ -7,12 +7,12 @@
     "familyNameRoman": "Jung",
     "familyNameKorean": "정",
     "familyNameKoreanRoman": "Jung",
-    "stageNameHangul": "태연",
+    "stageNameHangul": "제시카",
     "stageNameRoman": "Jessica",
     "birthday": "1989-04-18",
     "sex": "female",
     "nationality": "korean-american",
-    "groupHangul": "소녀시대",
-    "groupRoman": "Girls' Generation",
-    "status": "former"
+    "solo": true,
+    "soloDebutDate": "2016-05-16",
+    "status": "inactive"
 }
