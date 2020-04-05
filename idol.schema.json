@@ -4,8 +4,12 @@
     "required": [
       "givenName",
       "givenNameRoman",
+      "givenNameKorean",
+      "givenNameKoreanRoman",
       "familyName",
       "familyNameRoman",
+      "familyNameKorean",
+      "familyNameKoreanRoman",
       "stageNameHangul",
       "stageNameRoman",
       "birthday",
